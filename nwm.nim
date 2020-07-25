@@ -24,7 +24,7 @@ proc mainLoop =
   while true:
     discard XNextEvent(display, addr event)
 
-    if event.theType == KeyPress:
+    if event.theType == KeyPress and event.xbutton.subwindow != None:
       discard XRaiseWindow(display, event.xkey.subwindow)
     elif event.theType == ButtonPress and event.xbutton.subwindow != None:
       discard XGetWindowAttributes(display, event.xbutton.subwindow, addr attr)
